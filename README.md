@@ -1,4 +1,4 @@
-запросы
+запросы  
 select * from authors where author_id=1  
 select * from authors join books on authors.author_id = books.author_id  
 select * from authors join books on authors.author_id = books.author_id join prices on books.book_id=prices.book_id  
