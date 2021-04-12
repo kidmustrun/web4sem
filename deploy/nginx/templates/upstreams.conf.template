@@ -5,7 +5,3 @@ upstream php-upstream {
 upstream symfony-upstream {
     server php:9001;
 }
-
-upstream symfony2-upstream {
-    server php:9002;
-}
