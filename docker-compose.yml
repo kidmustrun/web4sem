@@ -30,3 +30,12 @@ services:
       MYSQL_DATABASE: project2021
     ports:
       - 3306:3306
+  mongo:
+    image: 'mongo:3.4.1'
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongo:/data/db'
+volumes:
+  mongo:
+
