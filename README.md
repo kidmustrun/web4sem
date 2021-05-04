@@ -1,23 +1,68 @@
-запросы  
+{
+  viewer {
+    login,
+    name, 
+    url
+    repositories(first: 10) {
+      nodes {
+        name
+        description
+        createdAt
+        url
+        issues(states: OPEN) {
+          totalCount
+        }
+      }
+    }
+  }
+}
 
-db.users.find()
 
-db.users.find({name: "Ирина"})
 
-user = db.users.findOne() - ищем юзера
+mutation CreateRepository {
+  createRepository(input: {visibility: PRIVATE, name: "hw5"}) {
+    repository {
+      name, id
+    }
+  }
+}
 
-db.ad.findOne({user_id: user._id}) - ищем обьявления с id юзера
 
-ad = db.ad.findOne()
+mutation CreateIssue {
+  createIssue(input: {repositoryId: "MDEwOlJlcG9zaXRvcnkzNjE3MDM2Nzc=", title: "TestIssue", body: "issue created"}) {
+    issue {
+      number
+      body
+      id
+    }
+  }
+}
 
-db.categories.findOne({category_id: ad.category_id})
 
-db.users.insert({name: "Tom", surname: "Smith", phone: "3456789099", email: "tom@mail.com"})
+mutation UpdateIssue {
+  updateIssue(input: {id: "MDU6SXNzdWU4Njc1Mjk4MjA=", title: "Updated issue", body: "ussue update"}) {
+    issue {
+      number
+      body
+      id
+    }
+  }
+}
 
-db.users.update({name : "Tom"}, {name: "Tom", surname: "Doe", phone: "3456789099", email: "tom@mail.com"}, {upsert: true}) - обновить документ с именем Tom, если не найден - создать новый документ
 
-db.users.remove({name : "Tom"}, true) - удалить все элементы с name Tom
+mutation CloseIssue {
+  closeIssue(input: {issueId: "MDU6SXNzdWU4Njc1Mjk4MjA="}) {
+    clientMutationId
+  }
+}
 
-db.users.find().explain()
 
-db.users.find({name: "Ирина"}).explain()
+Авторизация
+Ввод номера телефона - аутентификация при помощи кода, присланного на телефон - успешная авторизация либо новая попытка.
+Передается {phone: "79206474004"} в request payload, метод выбран post, Request URL: https://youla.ru/web-api/auth/request_code, Remote Address: 217.69.139.20:443, Content-Type: application/json. 
+
+
+В ответ от сервера приходит {"phone":"79206474004","code_length":6,"use_callui":false}, где code_length - будущая длина кода для входа. 
+
+
+После авторизации запросы, например, к сообщениям, имеют заголовки authorization (по токену), а также поля user_id в передаваемых параметрах.
