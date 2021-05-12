@@ -1,5 +1,18 @@
 version: "3"
 services:
+  nginx:
+    container_name: project_6
+    build:
+      context: .
+      dockerfile: deploy/nginx/Dockerfile
+    volumes:
+      - ./deploy/nginx/templates:/etc/nginx/templates
+      - ./project_6:/data/project_6
+    ports:
+      - "8081:80"
+    environment:
+      - NGINX_CUSTOM_SERVER_NAME=project-2021.local
+      - NGINX_SYMFONY_SERVER_NAME=project-symfony.local
   php:
     container_name: project-php
     build:
