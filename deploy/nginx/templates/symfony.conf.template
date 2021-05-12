@@ -1,6 +1,6 @@
 server {
     server_name ${NGINX_SYMFONY_SERVER_NAME};
-    root /data/public;
+    root /data/project_6/public;
 
     location / {
         # try to serve file directly, fallback to index.php
