@@ -55,7 +55,8 @@ up:
 	docker-compose up
 curl-site:
 	curl http://project-symfony.local:8081
-
+cmpsr: 
+	composer require $(package)
 
 
 
