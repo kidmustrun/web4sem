@@ -1,5 +1,5 @@
 LOCALHOST_PROJECT_DIR := $(shell pwd)
-PROJECT_NAME := project_6
+PROJECT_NAME := project-php
 COMPOSE_FILE := ./docker-compose.yml
 # IMPORT CONFIG WITH ENVS. You can change the default config with `make cnf="config_special.env" up-dev`
 # cnf ?= $(LOCALHOST_PROJECT_DIR)/deploy/config.env
@@ -54,7 +54,7 @@ restart:
 up:
 	docker-compose up
 curl-site:
-	curl http://project-symfony.local:8081
+	curl http://localhost:8081
 cmpsr: 
 	composer require $(package)
 

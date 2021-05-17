@@ -1,7 +1,7 @@
 {
     "type": "project",
     "name": "kidmustrun/my-project",
-    "description": "first simfony project",
+    "description": "first symfony project",
     "license": "proprietary",
     "minimum-stability": "dev",
     "prefer-stable": true,

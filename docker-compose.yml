@@ -10,9 +10,6 @@ services:
       - ./project_6:/data/project_6
     ports:
       - "8081:80"
-    environment:
-      - NGINX_CUSTOM_SERVER_NAME=project-2021.local
-      - NGINX_SYMFONY_SERVER_NAME=project-symfony.local
   php:
     container_name: project-php
     build:
