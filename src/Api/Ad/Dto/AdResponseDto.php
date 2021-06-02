@@ -7,7 +7,6 @@ namespace App\Api\Ad\Dto;
 
 class AdResponseDto
 {
-    public ?string $id;
 
     public ?string $title;
 

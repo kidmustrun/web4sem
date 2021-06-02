@@ -49,7 +49,7 @@ class AdController extends AbstractController
         return $this->createAdResponse($ad);
     }
 
-    /**
+     /**
      * @Route(path="", methods={"GET"})
      * @IsGranted(PermissionAd::AD_INDEX)
      * @Rest\View()
