@@ -215,6 +215,17 @@ class UserController extends AbstractController
             return RoleHumanReadable::USER;
         }
 
+        if (in_array(Role::OPERATOR, $user->getRoles(), true)) {
+            return RoleHumanReadable::OPERATOR;
+        }
+
+        if (in_array(Role::USER_AUTH, $user->getRoles(), true)) {
+            return RoleHumanReadable::USER_AUTH;
+        }
+        if (in_array(Role::AD_MODERATOR, $user->getRoles(), true)) {
+            return RoleHumanReadable::AD_MODERATOR;
+        }
+
         return null;
     }
 
