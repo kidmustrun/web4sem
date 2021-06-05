@@ -10,13 +10,12 @@ class ValidationExampleRequestDto
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Length(10)
+     * @Assert\Length(50)
      */
-    public string $text;
+    public string $title;
 
     /**
      * @Assert\NotBlank()
-     * @Assert\GreaterThan(10)
      */
-    public int $number;
+    public int $desc;
 }
