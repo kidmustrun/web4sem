@@ -49,7 +49,7 @@ class AdController extends AbstractController
         return $this->createAdResponse($ad);
     }
 
-     /**
+    /**
 
      * @Route(path="", methods={"GET"})
      * @IsGranted(PermissionAd::AD_INDEX)
@@ -77,7 +77,7 @@ class AdController extends AbstractController
     }
 
     /**
-     * @Route(path="", methods={"POST"})
+     * @Route(path="/", methods={"POST"})
      * @IsGranted(PermissionAd::AD_CREATE)
      * @ParamConverter("requestDto", converter="fos_rest.request_body")
      *

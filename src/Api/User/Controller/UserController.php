@@ -83,7 +83,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route(path="", methods={"POST"})
+     * @Route(path="/", methods={"POST"})
      * @IsGranted(Permission::USER_CREATE)
      * @ParamConverter("requestDto", converter="fos_rest.request_body")
      *

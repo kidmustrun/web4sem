@@ -17,5 +17,5 @@ class ValidationExampleRequestDto
     /**
      * @Assert\NotBlank()
      */
-    public int $desc;
+    public string $desc;
 }
