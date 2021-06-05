@@ -50,6 +50,7 @@ class AdController extends AbstractController
     }
 
      /**
+
      * @Route(path="", methods={"GET"})
      * @IsGranted(PermissionAd::AD_INDEX)
      * @Rest\View()

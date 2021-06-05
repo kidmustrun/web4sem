@@ -35,11 +35,11 @@ services:
     networks:
       - project
 
-  mongo:
+  db:
     container_name: tutorial-api-mongodb
     image: mongo
     ports:
-      - 27017:27017
+      - 27018:27017
     volumes:
       - ./volumes/mongo/:/data/db:cached
     networks:
