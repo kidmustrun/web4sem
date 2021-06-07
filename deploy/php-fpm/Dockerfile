@@ -8,3 +8,4 @@ WORKDIR ${DATA_ROOT}
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY deploy/php-fpm/php-fpm.d /usr/local/etc/php-fpm.d
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

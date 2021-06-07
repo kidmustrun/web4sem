@@ -56,7 +56,7 @@ up:
 curl-site:
 	curl http://localhost:8081
 cmpsr: 
-	composer require $(package)
+	docker run --name project-php composer require $(package)
 
 
 
