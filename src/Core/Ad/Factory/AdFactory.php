@@ -10,7 +10,7 @@ class AdFactory
 {
     public function create(
         string $title,
-        array $desc
+        string $desc
     ): Ad {
         $ad = new Ad(
             $title,
