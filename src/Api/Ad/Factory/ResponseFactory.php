@@ -20,8 +20,8 @@ class ResponseFactory
     {
         $dto = new AdResponseDto();
 
-        $dto->id                = $ad->getId();
-        $dto->title         = $ad->getTitle();
+        $dto->id           = $ad->getId();
+        $dto->title        = $ad->getTitle();
         $dto->desc         = $ad->getDesc();
 
         return $dto;

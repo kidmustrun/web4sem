@@ -42,20 +42,17 @@ class AdController extends AbstractController
      * @Rest\View()
      *
      * @param Ad|null         $ad
-     * @param ContactRepository $contactRepository
      * @param ResponseFactory   $responseFactory
      *
      * @return AdResponseDto
      */
-    public function show(Ad $ad = null, ContactRepository $contactRepository, ResponseFactory $responseFactory)
+    public function show(Ad $ad = null, ResponseFactory $responseFactory)
     {
         if (!$ad) {
             throw $this->createNotFoundException('Ad not found');
         }
 
-        $contact = $contactRepository->findOneBy(['ad' => $ad]);
-
-        return $responseFactory->createAdResponse($ad, $contact);
+        return $responseFactory->createAdResponse($ad);
     }
 
     /**
@@ -149,8 +146,8 @@ class AdController extends AbstractController
             return new ValidationFailedResponse($validationErrors);
         }
 
-        $ad->setFirstName($requestDto->firstName);
-        $ad->setLastName($requestDto->lastName);
+        $ad->setTitle($requestDto->title);
+        $ad->setDesc($requestDto->desc);
 
         $adRepository->save($ad);
 

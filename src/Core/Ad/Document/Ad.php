@@ -48,4 +48,11 @@ class Ad extends AbstractDocument
     {
         $this->desc = $desc;
     }
+    public function __construct(
+        string $title,
+        string $desc
+    ) {
+        $this->title  = $title;
+        $this->desc = $desc;
+    }
 }

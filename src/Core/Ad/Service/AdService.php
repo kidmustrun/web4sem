@@ -32,7 +32,7 @@ class AdService
     {
         $this->adRepository = $adRepository;
         $this->adFactory    = $adFactory;
-        $this->logger         = $logger;
+        $this->logger       = $logger;
     }
 
     public function findOneBy(array $criteria): ?Ad
@@ -42,7 +42,22 @@ class AdService
 
     public function updateAd(string $id, AdUpdateRequestDto $requestDto)
     {
-        //todo update logic
+        $ad = $this->find($id);
+
+        $ad = $adFactory->update( $ad,
+            $requestDto->title,
+            $requestDto->desc
+        );
+
+        $ad = $adRepository->save($ad);
+
+        $this->logger->info('Ad updated successfully', [
+            'id' => $ad->getId(),
+            'title' => $ad->getTitle(),
+            'desc' => $ad->getDesc()
+        ]);
+
+        return $ad;
     }
 
     public function createAd(AdCreateRequestDto $requestDto): Ad

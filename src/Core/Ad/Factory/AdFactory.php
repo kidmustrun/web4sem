@@ -19,4 +19,12 @@ class AdFactory
 
         return $ad;
     }
+    public function update(
+        $ad,
+        string $title,
+        string $desc
+    ){
+        $ad->setTitle($title);
+        $ad->setDesc($desc);
+    }
 }
