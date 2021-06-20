@@ -67,9 +67,6 @@ class AdService
             $requestDto->desc
         );
 
-        $ad->setTitle($requestDto->title);
-        $ad->setDesc($requestDto->desc);
-
         $ad = $this->adRepository->save($ad);
 
         $this->logger->info('Ad created successfully', [
