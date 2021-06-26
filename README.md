@@ -7,6 +7,7 @@
 >Issuer=http://auth.myservice.com&
 >
 >Audience=http://myservice.com&
+>
 >ExpiresOn=1435937883&
 >
 >UserName=Irina Gromova&
