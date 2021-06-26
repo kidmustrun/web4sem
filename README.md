@@ -20,11 +20,16 @@
 ***Пример подписанного JWT токена (после декодирования 1 и 2 блоков)***
 
 >header:
-{ "alg": "HS256", "typ": "JWT"}
-payload:
-{ "userId": "b08f86af-35da-48f2-8fab-cef3904660bd" }
-signature:
--xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM //закодирована с помощью секретного ключа
+>
+>{ "alg": "HS256", "typ": "JWT"}
+>
+>payload:
+>
+>{ "userId": "b08f86af-35da-48f2-8fab-cef3904660bd" }
+>
+>signature:
+>
+>-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM //закодирована с помощью секретного ключа
 
 ***Пример закодированного JWT-токена***
 > eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ.-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
