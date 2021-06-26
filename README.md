@@ -4,39 +4,31 @@
 
 ***Пример SWT токена после декодирования***
 
->Issuer=http://auth.myservice.com&
->
->Audience=http://myservice.com&
->
->ExpiresOn=1435937883&
->
->UserName=Irina Gromova&
->
->UserRole=Admin&
->
->HMACSHA256=KOUQRPSpy64rvT2KnYyQKtFFXUIggnesSpE7ADA4o9w
+    Issuer=http://auth.myservice.com&
+    Audience=http://myservice.com&
+    ExpiresOn=1435937883&
+    UserName=Irina Gromova&
+    UserRole=Admin&
+    HMACSHA256=KOUQRPSpy64rvT2KnYyQKtFFXUIggnesSpE7ADA4o9w
 
 ### JSON Web Token (JWT) 
 Это JSON объект, который определен в открытом стандарте RFC 7519. Он считается одним из безопасных способов передачи информации между двумя участниками. Для его создания необходимо определить заголовок (*header*) с общей информацией по токену, полезные данные (*payload*), такие как id пользователя, его роль и т.д. и подписи (*signature*). Алгоритм base64url кодирует *header* и *payload*. Далее необходимо соединить закодированные строки через точку. Затем полученная строка хешируется алгоритмом, заданным в *header* на основе нашего секретного ключа. 
 ***Пример подписанного JWT токена (после декодирования 1 и 2 блоков)***
 
->header:
->
->{ "alg": "HS256", "typ": "JWT"}
->
->payload:
->
->{ "userId": "b08f86af-35da-48f2-8fab-cef3904660bd" }
->
->signature:
->
->-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM // закодирована с помощью секретного ключа
+    header:
+    { "alg": "HS256", "typ": "JWT"}
+    payload:
+    { "userId": "b08f86af-35da-48f2-8fab-cef3904660bd" }
+    signature:
+    -xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM // закодирована с помощью секретного ключа
 
 ***Пример закодированного JWT-токена***
-> eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ.-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
+
+    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ.-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
 
 Всякий раз, когда пользователь хочет получить доступ к защищенному маршруту или ресурсу, пользователь должен отправлять JWT в заголовке авторизации. Содержимое заголовка должно выглядеть следующим образом:
->Authorization: Bearer <token>
+
+    Authorization: Bearer <token>
 
 ### Security Assertion Markup Language (SAML) 
 Определяет токены (*SAML assertions*) в XML-формате, включающем информацию об эмитенте, о субъекте, необходимые условия для проверки токена, набор дополнительных утверждений (*statements*) о пользователе. Подпись SAML-токенов осуществляется при помощи ассиметричной криптографии. Кроме того, в отличие от предыдущих форматов, SAML-токены содержат механизм для подтверждения владения токеном, что позволяет предотвратить перехват токенов через man-in-the-middle-атаки при использовании незащищенных соединений.
