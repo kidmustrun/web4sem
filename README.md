@@ -5,10 +5,14 @@
 ***Пример SWT токена после декодирования***
 
 >Issuer=http://auth.myservice.com&
+>
 >Audience=http://myservice.com&
 >ExpiresOn=1435937883&
+>
 >UserName=Irina Gromova&
+>
 >UserRole=Admin&
+>
 >HMACSHA256=KOUQRPSpy64rvT2KnYyQKtFFXUIggnesSpE7ADA4o9w
 
 ### JSON Web Token (JWT) 
