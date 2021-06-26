@@ -36,12 +36,14 @@
 
 ### Практическое задание (используя JWT-токен)
 Имеем следующие данные.
+
 ***Header:*** 
 
     {
     "alg": "HS256", // алгоритм хэширования (HS256), для его вычисления секретный ключ 
     "typ": "JWT" // тип токена
     }
+    
 ***Payload:***
 
     {
@@ -60,12 +62,13 @@
     const SECRET_KEY = 'mostSecretPasswordInTheWorld' // задаем секретный ключ
     const unsignedToken = base64urlEncode(header) + '.' + base64urlEncode(payload) // создаем неподписанный токен
     const signature = HMAC-SHA256(unsignedToken, SECRET_KEY) // хэшируем подпись
+
 ***Соединяем токен:***
 
     const token = encodeBase64Url(header) + '.' + encodeBase64Url(payload) + '.' + encodeBase64Url(signature) // составляем подписанный токен
 
 ***На выходе получаем закодированный токен:***
 
-    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJJcmluYSBHcm9tb3ZhIiwidXNlcl9pZCI6IjEzMDEyMDAyIiwidXNlcl9kZXZpY2VfaWQiOiJEMC05NC02Ni1GNi0xNC03QyIsInVzZXJfcm9sZSI6IlJPTEVfVVNFUiIsImlzcyI6ImF1dGgubXlzZXJ2aWNlLmNvbSIsImF1ZCI6Im15c2VydmljZS5jb20iLCJpYXQiOjE0NzU4NzQ0NTcsImV4cCI6MTQ3NTg3ODM1N30.gurMFyeNIzT_L5s2fjLlpa8jT24H_SCD9em_JqGBKVY
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJJcmluYSBHcm9tb3ZhIiwidXNlcl9pZCI6IjEzMDEyMDAyIiwidXNlcl9kZXZpY2VfaWQiOiJEMC05NC02Ni1GNi0xNC03QyIsInVzZXJfcm9sZSI6IlJPTEVfVVNFUiIsImlzcyI6ImF1dGgubXlzZXJ2aWNlLmNvbSIsImF1ZCI6Im15c2VydmljZS5jb20iLCJpYXQiOjE0NzU4NzQ0NTcsImV4cCI6MTQ3NTg3ODM1N30.gurMFyeNIzT_L5s2fjLlpa8jT24H_SCD9em_JqGBKVY
 
 В итоге процесс выглядит следующим образом. Сервер приложения получает секретный ключ от сервера аутентификации во время установки аутентификационных процессов. Поскольку приложение знает секретный ключ, когда пользователь делает API-запрос с приложенным к нему токеном, приложение может выполнить алгоритм подписывания. При получении запроса с токеном сервер разделяет токен на части, распаковывает заголовок и находит алгоритм подписи. Подпись, как мы помним, представляет из себя шифрованный по секретному ключу хэш от первых двух частей. Поэтому сервер вычисляет контрольную подпись от первых двух частей токена и сравнивает её с полученной в токене. Если подписи совпадают, значит токен валидный, т.е. пришел от проверенного источника. Если подписи не совпадают, значит что-то пошло не так — возможно, это является признаком потенциальной атаки. Таким образом, проверяя JWT, приложение добавляет доверительный слой (a layer of trust) между собой и пользователем.
